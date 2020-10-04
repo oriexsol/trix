@@ -1,0 +1,33 @@
+version: "2"
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3005:3000
+  influxdb:
+    image: influxdb
+    container_name: influxdb
+    restart: always
+    ports:
+      - 8086:8086
+    volumes:
+      - /nitur/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf
+    environment:
+      - INFLUXDB_DB=telegraf
+      - INFLUXDB_USER=telegraf
+      - INFLUXDB_ADMIN_ENABLED=true
+
+      - INFLUXDB_ADMIN_USER=telegraf
+      - INFLUXDB_ADMIN_PASSWORD=Aa123456
+  telegraf:
+    image: telegraf
+    container_name: telegraf
+    ports:
+      - 8092:8092
+      - 8125:8125
+      - 8094:8094
+    links:
+      - influxdb
+    volumes:
+      - /nitur/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
