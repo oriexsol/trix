@@ -5,7 +5,7 @@
 interval = "20s"
   vcenters = [ "https://10.0.0.49/sdk" ]
   username = "administrator@vsphere.local"
-  password = "Txyrydh440!"
+  password = ""
 
 vm_metric_include = []
 host_metric_include = []
@@ -21,7 +21,7 @@ insecure_skip_verify = true
 interval = "300s"
   vcenters = [ "https://10.0.0.49/sdk" ]
   username = "administrator@vsphere.local"
-  password = "Txyrydh440!"
+  password = ""
 
   datastore_metric_include = [ "disk.capacity.latest", "disk.used.latest", "disk.provisioned.latest"]
   insecure_skip_verify = true
