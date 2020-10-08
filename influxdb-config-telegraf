@@ -1,19 +1,58 @@
+[global_tags]
+[agent]
+  interval = "10s"
+  round_interval = true
+  metric_batch_size = 3000
+  metric_buffer_limit = 10000
+  collection_jitter = "0s"
+  flush_interval = "5s"
+  flush_jitter = "0s"
+  precision = ""
+  hostname = ""
+  omit_hostname = false
 [[outputs.influxdb]]
     ## The full HTTP or UDP endpoint URL for your InfluxDB instance.
-  ## Multiple urls can be specified as part of the same cluster,
-  ## this means that only ONE of the urls will be written to each interval.
-  # urls = ["udp://localhost:8089"] # UDP endpoint example
   urls = ["http://10.0.0.52:8086"] # required
-  ## The target database for metrics (telegraf will create it if not exists).
   database = "telegraf" # required
-
-  ## Retention policy to write to. Empty string writes to the default rp.
   retention_policy = ""
-  ## Write consistency (clusters only), can be: "any", "one", "quorum", "all"
   write_consistency = "any"
-
-  ## Write timeout (for the InfluxDB client), formatted as a string.
-  ## If not provided, will default to 5s. 0s means no timeout (not recommended).
   timeout = "5s"
    username = "telegraf"
    password = "Aa123456"## The full HTTP or UDP URL for your InfluxDB instance.
+[[inputs.cpu]]
+  percpu = true
+  totalcpu = true
+  collect_cpu_time = false
+  report_active = false
+[[inputs.disk]]
+  ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "aufs", "squashfs"]
+[[inputs.diskio]]
+[[inputs.kernel]]
+[[inputs.mem]]
+[[inputs.processes]]
+[[inputs.swap]]
+[[inputs.system]]
+[[inputs.vsphere]]
+interval = "20s"
+  vcenters = [ "https://10.0.0.49/sdk" ]
+  username = "administrator@vsphere.local"
+  password = ""
+vm_metric_include = []
+host_metric_include = []
+cluster_metric_include = []
+datastore_metric_exclude = ["*"]
+max_query_metrics = 256
+timeout = "60s"
+insecure_skip_verify = true
+[[inputs.vsphere]]
+interval = "300s"
+  vcenters = [ "https://10.0.0.49/sdk" ]
+  username = "administrator@vsphere.local"
+  password = ""
+  datastore_metric_include = [ "disk.capacity.latest", "disk.used.latest", "disk.provisioned.latest"]
+  insecure_skip_verify = true
+  force_discover_on_init = true
+  host_metric_exclude = ["*"] # Exclude realtime metrics
+  vm_metric_exclude = ["*"] # Exclude realtime metrics
+  max_query_metrics = 256
+  collect_concurrency = 3
