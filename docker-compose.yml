@@ -4,7 +4,7 @@ services:
     image: grafana/grafana
     container_name: grafana
     ports:
-      - 3005:3000
+      - 3000:3000
   influxdb:
     image: influxdb
     container_name: influxdb
