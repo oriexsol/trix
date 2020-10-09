@@ -1,7 +1,7 @@
 apt-get install -y docker.io
 apt-get install -y docker-compose
 mkdir /nitur
-git clone https://github.com/oriexsol/trix.git
+cd ./trix
 cp influxdb.conf /nitur/
 cp telegraf.conf /nitur/
 docker load -i telegraf.tar
