@@ -7,3 +7,4 @@ cd ..
 docker load -i telegraf.tar
 docker load -i grafana.tar
 docker load -i influxdb.tar
+docker-compose up -d
