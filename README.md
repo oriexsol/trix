@@ -9,5 +9,5 @@ SETUP:
     - "setup.sh"
 
 ## Ansible
-to create VM run - create-vm.yml 
-to delete vm run - delete-vm.yml
+1. to create VM run - create-vm.yml 
+2. to delete vm run - delete-vm.yml
