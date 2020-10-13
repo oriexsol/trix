@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - community.vmware.vmware_guest:
+        hostname: 10.0.0.49
+        username: administrator@vsphere.local
+        password: 
+        validate_certs: no
+        folder: /ha-datacenter/vm
+        name: test_vm_0002
+        state: poweredoff
+        guest_id: ubuntu64Guest
+        disk:
+        - size_gb: 10
+          type: thin
+          datastore: datastore1
+        networks:
+        - name: VM Network
+          device_type: vmxnet3
+        hardware:
+          memory_mb: 4096
+          num_cpus: 4
