@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - community.vmware.vmware_guest:
+        hostname: 10.0.0.49
+        username: administrator@vsphere.local
+        password: 
+        validate_certs: no
+        name: test_vm_0002
+        delete_from_inventory: True
+        state: absent
